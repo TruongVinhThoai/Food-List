@@ -136,6 +136,7 @@
               <button
                 id="btnThem"
                 type="button"
+                onclick="resetForm()"
                 class="btn btn-warning mb-3 text-white"
                 data-toggle="modal"
                 data-target="#exampleModal"
@@ -317,10 +318,20 @@
             >
               Close
             </button>
-            <button type="button" class="btn btn-warning" id="btnCapNhat">
+            <button
+              type="button"
+              class="btn btn-warning"
+              onclick="updateFood()"
+              id="btnCapNhat"
+            >
               Cập Nhật
             </button>
-            <button type="button" class="btn btn-warning" id="btnThemMon">
+            <button
+              type="button"
+              class="btn btn-warning"
+              onclick="addFood()"
+              id="btnThemMon"
+            >
               Thêm
             </button>
           </div>
@@ -336,6 +347,10 @@
       integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
     ></script>
     <script type="module" src="../controllers/v2/main-v2.js"></script>
   </body>

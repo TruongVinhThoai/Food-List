@@ -87,3 +87,15 @@ export let showDataForm = (item) => {
   document.getElementById("hinhMon").value = img;
   document.getElementById("moTa").value = desc;
 };
+
+export let resetForm = () => {
+  document.getElementById("foodID").readOnly = false;
+  document.getElementById("foodID").value = "";
+  document.getElementById("tenMon").value = "";
+  document.getElementById("loai").value = "";
+  document.getElementById("giaMon").value = "";
+  document.getElementById("khuyenMai").value = "";
+  document.getElementById("tinhTrang").value = "";
+  document.getElementById("hinhMon").value = "";
+  document.getElementById("moTa").value = "";
+};
