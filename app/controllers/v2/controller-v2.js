@@ -29,9 +29,13 @@ let renderFoodList = (list) => {
 export let searchCategory = (data) => {
   let searchSelection = document.getElementById("selLoai").value;
   let searchSelect = data.filter((item) => {
-    return item.category.includes(searchSelection);
+    const category = item.category ? "Chay" : "Mặn";
+    return category.toLowerCase().includes(searchSelection?.toLowerCase());
   });
-  fetchFoodList(searchSelect);
+  if (searchSelection !== "all") {
+    return renderFoodList(searchSelect);
+  }
+  return renderFoodList(data);
 };
 
 export let fetchFoodList = () => {
@@ -87,8 +91,7 @@ export let showDataForm = (item) => {
   let { id, name, category, price, discount, status, img, desc } = item;
   document.getElementById("foodID").value = id;
   document.getElementById("tenMon").value = name;
-  document.getElementById("loai").value =
-    category == mon_chay ? "loai1" : "loai2";
+  document.getElementById("loai").value = category == mon_chay ? "Chay" : "Mặn";
   document.getElementById("giaMon").value = price;
   document.getElementById("khuyenMai").value = discount;
   document.getElementById("tinhTrang").value = status == con_mon ? "1" : "0";
