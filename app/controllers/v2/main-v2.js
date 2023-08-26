@@ -4,15 +4,15 @@ import {
   getDataForm,
   resetForm,
   searchCategory,
+  searchFoodList,
   showDataForm,
   showMessage,
 } from "./controller-v2.js";
-///
-///
-////
-///
+
+// Gọi lại API
 fetchFoodList();
 
+// Tìm kiếm theo loại
 window.search = () => {
   axios({
     url: BASE_URL,
@@ -26,30 +26,18 @@ window.search = () => {
     });
 };
 
+// Reset form khi nhấn vào thêm
 window.resetForm = () => {
   resetForm();
 };
 
+// Xóa sản phẩm
 window.delFood = (id) => {
   axios
     .delete(`${BASE_URL}/${id}`)
     .then((res) => {
       showMessage("Xoá thành công");
-      axios({
-        url: BASE_URL,
-        method: "GET",
-      })
-        .then((res) => {
-          let searchSelection = document.getElementById("selLoai").value;
-          if (searchSelection !== "all" && res?.data) {
-            console.log("first");
-            return searchCategory(res?.data);
-          }
-          return fetchFoodList();
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      searchFoodList();
     })
     .catch((err) => {
       console.log(err);
@@ -57,6 +45,7 @@ window.delFood = (id) => {
     });
 };
 
+// Thêm sản phẩm
 window.addFood = () => {
   let data = getDataForm();
   axios
@@ -64,7 +53,8 @@ window.addFood = () => {
     .then((res) => {
       console.log(res);
       $("#exampleModal").modal("hide");
-      fetchFoodList();
+      // fetchFoodList();
+      searchFoodList();
       showMessage("Thêm món thành công");
     })
     .catch((err) => {
@@ -73,6 +63,7 @@ window.addFood = () => {
     });
 };
 
+// Sửa sản phẩm
 window.editFood = (id) => {
   $("#exampleModal").modal("show");
   document.getElementById("foodID").readOnly = true;
@@ -87,13 +78,15 @@ window.editFood = (id) => {
     });
 };
 
+// Update sản phẩm
 window.updateFood = () => {
   let data = getDataForm();
   axios
     .put(`${BASE_URL}/${data.id}`, data)
     .then((res) => {
       console.log(res);
-      fetchFoodList();
+      // fetchFoodList();
+      searchFoodList();
       $("#exampleModal").modal("hide");
       showMessage("Cập nhật thành công");
     })
