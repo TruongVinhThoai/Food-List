@@ -3,6 +3,7 @@ import {
   fetchFoodList,
   getDataForm,
   resetForm,
+  searchCategory,
   showDataForm,
   showMessage,
 } from "./controller-v2.js";
@@ -10,15 +11,20 @@ import {
 ///
 ////
 ///
-// function searchCategory() {
-let data = renderFoodList();
-console.log("🚀 ~ file: main-v2.js:12 ~ searchCategory ~ data:", data);
-let searchSelection = document.getElementById("selLoai").value;
-let searchSelect = data.filter((item) => {
-  return item.category.toUpperCase().includes(searchSelection.toUpperCase());
-});
-fetchFoodList(searchSelect);
-// }
+fetchFoodList();
+
+window.search = () => {
+  axios({
+    url: BASE_URL,
+    method: "GET",
+  })
+    .then((res) => {
+      searchCategory(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
 window.resetForm = () => {
   resetForm();

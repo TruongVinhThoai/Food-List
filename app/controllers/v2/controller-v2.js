@@ -26,6 +26,14 @@ let renderFoodList = (list) => {
   document.getElementById("tbodyFood").innerHTML = contenHTML;
 };
 
+export let searchCategory = (data) => {
+  let searchSelection = document.getElementById("selLoai").value;
+  let searchSelect = data.filter((item) => {
+    return item.category.includes(searchSelection);
+  });
+  fetchFoodList(searchSelect);
+};
+
 export let fetchFoodList = () => {
   axios({
     url: BASE_URL,
