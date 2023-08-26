@@ -45,6 +45,7 @@ window.delFood = (id) => {
             console.log("first");
             return searchCategory(res?.data);
           }
+          return fetchFoodList();
         })
         .catch((err) => {
           console.log(err);

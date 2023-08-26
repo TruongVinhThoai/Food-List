@@ -65,14 +65,14 @@ export let showMessage = (mess, isSuccess = true) => {
 export let getDataForm = () => {
   let id = document.getElementById("foodID").value;
   let name = document.getElementById("tenMon").value;
-  let category = document.getElementById("loai").value;
+  let category = document.getElementById("loai").value == "Chay" ? true : false;
   let price = document.getElementById("giaMon").value;
   let discount = document.getElementById("khuyenMai").value;
   let status = document.getElementById("tinhTrang").value;
   let img = document.getElementById("hinhMon").value;
   let desc = document.getElementById("moTa").value;
 
-  return {
+  let test = {
     id,
     name,
     category,
@@ -81,10 +81,12 @@ export let getDataForm = () => {
     status,
     img,
     desc,
-    discountPrice: () => {
+    discountPrice: function () {
       return this.price * (1 - this.discount);
     },
   };
+  console.log("🚀 ~ file: controller-v2.js:88 ~ getDataForm ~ test:", test);
+  return test;
 };
 
 export let showDataForm = (item) => {
